@@ -43,6 +43,9 @@ Licensed under the MIT license
 		let readingTimeSeconds;
 		let readingTime;
 		let readingTimeObj;
+		
+		// get lang attribute
+		let langBlogger = $('html').attr('lang');
 
 		// merge defaults and options
 		plugin.settings = $.extend({}, defaults, options);
@@ -152,7 +155,7 @@ Licensed under the MIT license
 		}
 
 		// Use switch instead of ifs
-		switch (s.lang) {
+		switch (s.lang && langBlogger) {
 			// if s.lang is Arabic
 			case 'ar':
         lessThanAMinute = s.lessThanAMinuteString || "أقل من دقيقة";
@@ -252,6 +255,11 @@ Licensed under the MIT license
 			case 'kr':
 		lessThanAMinute = s.lessThanAMinuteString || '1분 이하';
 		minShortForm = '분';
+        break;
+			// if s.lang is Indonesian
+			case 'id':
+		lessThanAMinute = s.lessThanAMinuteString || 'Kurang dari 1 menit';
+		minShortForm = 'menit';
         break;
 			// default s.lang in english
 			default:
